@@ -2,7 +2,7 @@
 Files for my Lars GPSDO project
 
 
-I made a two mistakes and did a few things I should have done better on the pcb layout. 
+I made two mistakes on the layout and did a few things I should have done better. 
 Let me sum them up.
 1. The TO-92 footprint for the LM35's are the wrong way around. This is easy to fix by bending the middle pin the other way so you can swap the power and ground pins.
 2. One of the footprints for the OCXO's is wrong. It doesn't matter because another footprint is the same anyway.
@@ -12,3 +12,5 @@ Let me sum them up.
 6. I forgot to add pins for a power LED because at first I didn't think I needed one. You can easily add one and tie it to any exposed 5V place with a resistor and ground.
 7. L101 is located on the bottom side, just in case a large size OCXO could be in the way on the top. I have always mounted it on top.
 8. I suggest you seriously isolate the OCXO you are going to use with a foam box. Some of them radiate a lot of heat. I included U6, the LM35, within the isolation box, sometimes with extended leads to properly measure the temperature. In the case of the Trimble, where I didn't make a footprint because it was too large, I mounted it on top of a little foam and connected the pins with short wires before I added a box on top of it.
+9. I have not used U7, the special chip that creates a 1Hz output from the 10MHz from the GPSDO yet. Info can be found here: http://www.leapsecond.com/pages/ppsdiv/ppsdiv.asm
+
