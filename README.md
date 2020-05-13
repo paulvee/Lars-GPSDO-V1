@@ -1,8 +1,11 @@
 # Lars-GPSDO
 Files for my Lars GPSDO project
 
+The blog of the project can be found here: https://www.eevblog.com/forum/projects/lars-diy-gpsdo-with-arduino-and-1ns-resolution-tic/ it also includes my activities, stumbling and experiences.
 
-I made two mistakes on the layout and did a few things I should have done better. 
+The version of the Arduino code is a modified one from Lars'original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all it does is change the ISR a little.
+
+I made two mistakes on the layout of the PCB and did a few things I should have done better. 
 Let me sum them up.
 1. The TO-92 footprint for the LM35's are the wrong way around. This is easy to fix by bending the middle pin the other way so you can swap the power and ground pins.
 2. One of the footprints for the OCXO's is wrong. It doesn't matter because another footprint is the same anyway.
