@@ -3,7 +3,7 @@ Files for my Lars GPSDO project
 
 The blog of the project can be found here: https://www.eevblog.com/forum/projects/lars-diy-gpsdo-with-arduino-and-1ns-resolution-tic/ it also includes my activities, stumbling and experiences.
 
-The version of the Arduino code is a modified one from Lars'original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all it does is change the ISR a little.
+The version of the Arduino code is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all it does is change the ISR a little.
 
 I made two mistakes on the layout of the PCB and did a few things I should have done better. 
 Let me sum them up.
