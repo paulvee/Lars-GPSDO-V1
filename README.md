@@ -6,7 +6,7 @@ The blog of the project can be found here: https://www.eevblog.com/forum/project
 The version of the Arduino code is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all it does is change the ISR a little.
 
 I made two mistakes on the layout of the PCB and did a few things I should have done better. 
-Let me sum them up.
+Let me sum them up and also some advise on how to use the board.
 1. The TO-92 footprint for the LM35's are the wrong way around. This is easy to fix by bending the middle pin the other way so you can swap the power and ground pins.
 2. One of the footprints for the OCXO's is wrong. It doesn't matter because another footprint is the same anyway.
 3. The location of U3 is a little too close to the edge of the board. I use metal enclosures where the board slips in on rails, and I had to cut the pins on the edge of the chip and I used some tape over them to make sure they don't short to the enclosure.
