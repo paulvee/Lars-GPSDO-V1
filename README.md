@@ -1,5 +1,5 @@
-# Lars-GPSDO
-Files for my Lars GPSDO project
+# Lars Walenius-GPSDO
+Files for my Lars Walenius (RIP) GPSDO project
 
 The blog of the project can be found here: https://www.eevblog.com/forum/projects/lars-diy-gpsdo-with-arduino-and-1ns-resolution-tic/ it also includes my activities, stumbling and experiences.
 
@@ -16,11 +16,11 @@ b. There are provisions on the board for sine wave OCXO's.
 c. I forgot to add a connector on the PCB for a power LED because at first I didn't think I needed one. You can easily add an LED and tie it to any exposed 5V place with a resistor and ground.
 d. L101 is located on the bottom side, just in case a large size OCXO could be in the way on the top. I have always mounted it on top.
 e. I use a socket for the GPS module, and bend the pins of the module a bit to flatten the angle. I also use a cable to connect it to the back panel as an SMA socket.
-f. I suggest you seriously isolate the OCXO you are going to use with a foam box. Some of them radiate a lot of heat. I included U6, the LM35, within the isolation box, sometimes with extended leads to properly measure the temperature. In the case of the Trimble, where I didn't make a footprint because it was too large, I mounted it on top of a little foam and connected the pins with short wires before I added a box on top of it.
+f. I suggest you seriously isolate the OCXO you are going to use with a foam box. Some of them radiate a lot of heat. I included U6, the LM35, within the isolation box to properly measure the OCXO temperature. In the case of the Trimble, where I didn't make a footprint because it was too large, I mounted it on top of a little foam and connected the pins with short wires before I added a box on top of it.
 g. I have not used U7, I put a socket in it's place. This the special chip that creates a 1Hz output from the 10MHz from the GPSDO yet. Info can be found here: http://www.leapsecond.com/pages/ppsdiv/ppsdiv.asm
 h. Make sure you use a quality 1nF NPO capacitor for C1. I used Chinese general purpose ones before, and there was a lot more stability when I changed it.
 i. After the burn-in period, make sure you take the trimmer out and replace it with resistors. It makes a big difference on the temperature sensitivity because it is so close to the oven of the OCXO's.
-j. The ambient sensor LM35 is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some leads to the pins of the LM35 and move it away. I suggest you move it close to the circuit around C1, because that has the most temperature influence on the operation. 
+j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some leads to the pins of the LM35 and move it away. I suggest you move it close to the circuit around C1, because that has a significant temperature influence on the loop operation. 
 k. I noticed an oscillation on the 5V reference supply. I removed C101, the 2.2uF Tantalum cap to stop that. I also noticed some glitches on the supply one one of my instruments, and replacing C106 fixed that. Must have been a bad capacitor.
 
 IF you are a purist, it's easy to use this PCB with the original Lars' design by using some wires to bridge the extra gates. R7 can be changed back to the original 10M Ohm value and if you either ground the end that now goes to the Arduino output pin, or change the software to always output a low on that pin, you have the original design back.
