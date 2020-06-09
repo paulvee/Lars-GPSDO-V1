@@ -20,8 +20,8 @@ f. I suggest you seriously isolate the OCXO you are going to use with a foam box
 g. I have not used U7, I put a socket in it's place. This the special chip that creates a 1Hz output from the 10MHz from the GPSDO yet. Info can be found here: http://www.leapsecond.com/pages/ppsdiv/ppsdiv.asm
 h. Make sure you use a quality 1nF NPO capacitor for C1. I used Chinese general purpose ones before, and there was a lot more stability when I changed it.
 i. After the burn-in period, make sure you take the trimmer out and replace it with resistors. It makes a big difference on the temperature sensitivity because it is so close to the oven of the OCXO's.
-j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some leads to the pins of the LM35 and move it away. I suggest you move it close to the circuit around C1, because that has a significant temperature influence on the loop operation. 
-k. I noticed an oscillation on the 5V reference supply. I removed C101, the 2.2uF Tantalum cap to stop that. I also noticed some glitches on the supply one one of my instruments, and replacing C106 fixed that. Must have been a bad capacitor.
+j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some 8-10cm leads to the pins of the LM35 and move it away. I suggest you move it close to the circuit around C1, because that has a significant temperature influence on the loop operation. 
+k. In earlier schematics, I used a 2N2907 transistor for Q101, to boost the 5V reference output. That transistor may raise the reference output level. Use a 2N3906 transistor instead.
 
 IF you are a purist, it's easy to use this PCB with the original Lars' design by using some wires to bridge the extra gates. R7 can be changed back to the original 10M Ohm value and if you either ground the end that now goes to the Arduino output pin, or change the software to always output a low on that pin, you have the original design back.
 
