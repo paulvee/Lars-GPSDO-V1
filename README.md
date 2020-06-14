@@ -34,7 +34,6 @@ j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot o
 
 k. In earlier schematics, I used a 2N2907 transistor for Q101, to boost the 5V reference output. That transistor may raise the reference output level. Use a 2N3906 transistor instead. Watch out of the change in pin-out, the 2N3906 has the e-c swapped compared to the 2N2907.
 
-l. I noticed an ambient temperature drop during the time when the lock was lost. It may very well be that the onboard 5V regulator on the Arduino Nano is a bit overloaded.  To isolate that rail, I have cut the trace from C9 to the other components, so it now only connects to the Arduino 5V. I have also added an additional LM78L05 to the bottom side of the board that is fed by the 8V supply rail. The LM78L05 has a 4.7uF Tantalum capacitor on the putput. This output now feeds the +5V rail. I have also cut the power trace from U105, it had some OCXO noise so it now connects to the new +5V rail.
 
 IF you are a purist, it's easy to use this PCB with the original Lars' design by using some wires to bridge the extra gates. R7 can be changed back to the original 10M Ohm value and if you either ground the end that now goes to the Arduino output pin, or change the software to always output a low on that pin, you have the original design back.
 
