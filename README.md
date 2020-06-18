@@ -32,7 +32,7 @@ i. After the burn-in period, make sure you take the trimmer out and replace it w
 
 j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some 8-10cm leads to the pins of the LM35 and move it away. I suggest you move it close to the circuit around C1, because that has a significant temperature influence on the loop operation.
 
-k. In earlier schematics, I used a 2N2907 transistor for Q101, to boost the 5V reference output. That transistor may raise the reference output level. Use a 2N3906 transistor instead. Watch out of the change in pin-out, the 2N3906 has the e-c swapped compared to the 2N2907.
+k. The current output booster for the REF02 is not needed, and gives problems. The 74HC14N circuit (U102) and the related parts draws less than 4 mA. The REF02 can drive up to 10mA. Do not install R101 and Q101.
 
 
 IF you are a purist, it's easy to use this PCB with the original Lars' design by using some wires to bridge the extra gates. R7 can be changed back to the original 10M Ohm value and if you either ground the end that now goes to the Arduino output pin, or change the software to always output a low on that pin, you have the original design back.
