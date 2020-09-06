@@ -45,3 +45,6 @@ k. The current output booster for the REF02 is not needed, and gives problems. T
 
 IF you are a purist, it's easy to use this PCB with the original Lars' design by using some wires to bridge the extra gates. R7 can be changed back to the original 10M Ohm value and if you either ground the end that now goes to the Arduino output pin, or change the software to always output a low on that pin, you have the original design back.
 
+Modifications
+=============
+My modifictions based on the original V1 schematics that the PCB's are based upon, are documented in the V2 schematics.
