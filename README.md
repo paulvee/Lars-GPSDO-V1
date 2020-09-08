@@ -7,8 +7,8 @@ My own blog will detail my changes and experiences with this project. It can be 
 
 Firmware and scripts
 ====================
-The version of the Arduino code I use is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all this version (gpsdo_V2) does is change the ISR a little and adds a software probe to see what is going on inside the ISR.
-I have also added two Python scripyts that I use on my Raspberry Pi's that are connected to the USB serial out connector of the Ardujino Nano. There is a script that collects the output, and a script to mail the daily results to my account. The log files go to a USB flash stick, not to the SD card to avoid wear and tear. You need to also install an email program on the RPi of course.
+The version 2.0 of the Arduino code I use is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all this version (gpsdo_V2) does is change the ISR a little and adds a software probe to see what is going on inside the ISR.
+I have also added two Python scripyts that I use on my Raspberry Pi's that are connected to the USB serial out connector of the Ardujino Nano. There is a script that collects the output, and a script to mail the daily results to my account. The log files go to a USB flash stick, not to the SD card to avoid wear and tear. You need to also install an email program on the RPi of course. Version 3.4 adds low-pass filters for the temperature sensors, and meaningfull labels for them in the header.
 
 PCB layout
 ==========
