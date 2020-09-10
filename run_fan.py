@@ -40,7 +40,8 @@ Fan = GPIO.PWM(FAN_PIN, 100) # create object Fan for PWM on port 22 at 100 Hertz
 Fan.start(0)            # start Fan on 0 percent duty cycle (off)
 
 delay = 1               # seconds of delay between samples
-cool_baseline = 30      # start cooling from this temp in Celcius onwards
+cool_baseline = 33      # start cooling from this temp in Celcius onwards
+                        # 34 degrees enclosure temp is 50 degrees inside GPSDO
 pwm_baseline = 40       # lowest PWM to keep the fan running
 factor = 3              # multiplication factor
 max_pwm = 100           # maximum PWM value
@@ -51,9 +52,6 @@ base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 
-# IIR filter
-ds_temp_IIR = 40
-IIR_Filter_Weight = 16
 
 def read_temp_raw():
     f = open(device_file, 'r')
@@ -77,7 +75,7 @@ def read_dsb20():
 
 
 def main():
-    global fan_running, ds_temp_IIR
+    global fan_running
     '''
     This program controls a Fan by using PWM.
     The Fan will probably not work below 40% dutycycle, so that is the
@@ -101,18 +99,18 @@ def main():
         while True:
 
                 ds_temp = read_dsb20()
-                ds_temp_IIR = ds_temp_IIR + ((ds_temp - ds_temp_IIR) / IIR_Filter_Weight);
-                if DEBUG : print ("ds temp = : ", ds_temp_IIR)
 
-                if ds_temp_IIR < cool_baseline :
+                if DEBUG : print ("ds temp = : ", ds_temp)
+
+                if ds_temp < cool_baseline - 0.5 : # a little hysteresis
                     if DEBUG : print("too low")
                     Fan.ChangeDutyCycle(0) # turn Fan off
                     fan_running = False
 
-                if ds_temp_IIR > cool_baseline :
+                if ds_temp > cool_baseline :
                     if DEBUG : print("fan temp reached")
                     if fan_running :
-                        duty_cycle = ((ds_temp_IIR-cool_baseline)*factor)+pwm_baseline
+                        duty_cycle = ((ds_temp - cool_baseline)*factor)+pwm_baseline
                         if duty_cycle > max_pwm : duty_cycle = max_pwm # max = 100%
                         if DEBUG : print("adjust fan, dc = ", duty_cycle)
                     else:
@@ -124,7 +122,7 @@ def main():
                     Fan.ChangeDutyCycle(duty_cycle)   # output the pwm value
 
                     if DEBUG : print("pwm {:.2f}".format(duty_cycle))
-                    if TRACE : print("ds_temp = \t{:.2f}\tIIR_temp = \t{:.2f} \tdc = \t{:.2f}".format(ds_temp, ds_temp_IIR, duty_cycle))
+                    if TRACE : print("ds_temp = \t{:.2f}\tdc = \t{:.2f}".format(ds_temp, duty_cycle))
                 sleep(delay)
 
     # the following will allow you to kill the program, you can delete these lines if you want
