@@ -15,7 +15,7 @@ I have also added a script (run_fan.py) that takes the values of a DS18B20 tempe
 
 Another version of the Serial_monitor(V2) takes the DS18B20 sensor reading and addes that in front of the Lars firmware report, such that I can measure and graph the OCXO oven temperature, the ambient temperature inside the aluminum GPSDO enclosure, and the temperature inside the plastic enclosure together with the usual ns and DAC values.
 
-There is a new version of run_fanV2_0.py, that implements a PID algorithm to better control the fan. Although it works very well, I'm now doing some long-term testing with this version, and it may need some more tuning so use it with care.
+There is a new version of run_fanV2_0.py, that implements a PID algorithm to better control the fan. Although it works very well, I'm now doing some long-term testing with this version. The published version has my lates PID tweaks in them, but they may be different for your application.
 
 PCB layout
 ==========
