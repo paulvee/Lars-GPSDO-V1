@@ -45,12 +45,12 @@ delay = 1               # seconds of delay between samples
 cool_baseline = 33      # start cooling from this temp in Celcius onwards.
                         # 33 degrees enclosure temp is 52 degrees inside GPSDO
                         # and 65 degrees for the Oscilloquartz oven temperature
-pwm_baseline = 30       # lowest PWM to keep the fan running and baseline
+pwm_baseline = 25       # lowest PWM to keep the fan running and baseline
 factor = 20             # gain factor
 max_pwm = 100           # maximum PWM value
 fan_running = False     # helps to kick-start the fan
-Kp = 1
-Ki = 1
+Kp = 6
+Ki = 0.5
 Kd = 1
 
 # DS18B20 data locations
@@ -58,6 +58,9 @@ base_dir = '/sys/bus/w1/devices/'
 device_folder = glob.glob(base_dir + '28*')[0]
 device_file = device_folder + '/w1_slave'
 
+# IIR low pass filter
+IIR_Filter_Weight = 3;  # IIC filter weight value
+ds_temp = cool_baseline
 
 def read_temp_raw():
     f = open(device_file, 'r')
@@ -81,7 +84,7 @@ def read_dsb20():
 
 
 def main():
-    global fan_running
+    global fan_running, ds_temp
     '''
     This program controls a Fan by using PWM.
     The Fan will probably not work below a certain dutycycle, so set that value in
@@ -98,14 +101,14 @@ def main():
     prev_error = 0
     integral = 0
     duty_cycle = pwm_baseline
-    Fan.ChangeDutyCycle(40)   # kick_start the fan
+    Fan.ChangeDutyCycle(50)   # kick_start the fan
 
     try:
         while True:
 
-            ds_temp = read_dsb20()
+#            ds_temp = read_dsb20()
+            ds_temp = ds_temp + ((read_dsb20() - ds_temp) / IIR_Filter_Weight);
 
-            if DEBUG : print ("ds temp = : ", ds_temp)
             # PID calculation
             temp_error = ds_temp - cool_baseline
             integral = integral + temp_error * delay
@@ -117,14 +120,11 @@ def main():
             if duty_cycle > max_pwm : duty_cycle = max_pwm # max = 100%
             if duty_cycle < pwm_baseline : duty_cycle = pwm_baseline
             if DEBUG :
-                print("Kp = {:.2f}".format(Kp * temp_error))
-                print("Ki = {:.2f}".format(Ki * integral))
-                print("Ki = {:.2f}".format(Kd * derivative))
+                print("Kp = {:.2f}\t Ki = {:.2f}\t Kd = {:.2f}\t temp = {:.2f}\t dc = {:.2f}"\
+                    .format((Kp * temp_error), (Ki * integral),(Kd * derivative), ds_temp, duty_cycle))
 
             Fan.ChangeDutyCycle(duty_cycle)   # output the pwm value
 
-            if DEBUG : print("pwm {:.2f}".format(duty_cycle))
-            if TRACE : print("ds_temp = \t{:.2f}\tdc = \t{:.2f}".format(ds_temp, duty_cycle))
             sleep(delay)
 
     # the following will allow you to kill the program, you can delete these lines if you want
