@@ -49,12 +49,9 @@ const int probe = 12; // create a sw probing signal within the ISR to help visua
 const int fan_pin = 6;    // Fan PWM output @ 490Hz : pin 9 does NOT work!
 float ambient_t;          // ambient temperature
 int duty_cycle;           // PWM value for the fan
-int loop_delay = 1;       // loop time in seconds
 float integral;           // used in PID function to save the previous value
 float prev_error;         // used in the PID function to store the previous error
 int cool_baseline = 35;   // start cooling from this temp in Celcius onwards.
-                          // 33 degrees enclosure temp is 52 degrees inside GPSDO
-                          // and 65 degrees for the Oscilloquartz oven temperature
 int pwm_baseline = 50;    // lowest PWM to keep the fan running and baseline
 int max_pwm = 255;        // maximum PWM value
 float Kp = 6;
