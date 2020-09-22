@@ -17,7 +17,7 @@ Another version of the Serial_monitor(V2) takes the DS18B20 sensor reading and a
 
 There is a new version of run_fanV2_0.py, that implements a PID algorithm to better control the fan. Although it works very well, I'm now doing some long-term testing with this version. The published version has my lates PID tweaks in them, but they may be different for your application.
 
-Version 3.51 of the Lars code implements the PID based fan controller for the ambient temperature of the PGSDO enclosure. Look at my blog for details
+Version 3.51 of the Lars code implements the PID based fan controller for the ambient temperature of the PGSDO enclosure. Controller Schematic V2.1 shows the hardware components for the fan driver. Look at my blog for details.
 
 PCB layout
 ==========
