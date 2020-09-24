@@ -944,7 +944,9 @@ void getCommand()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void printDataToSerial()
 {
-  Serial.print("\t");   
+  Serial.print("\t");   // *** paulv
+  Serial.print(duty_cycle);  // *** paulv added pwm duty cycle to report header
+  Serial.print("\t");  
   Serial.print((time), DEC);  
   Serial.print("\t");  
   if (TIC_Value == 1023)
@@ -1149,6 +1151,8 @@ void printHeader2_ToSerial()
 ////////////////////////////////////////////////////////////////////////////////////////////////
 void printHeader3_ToSerial()
 { 
+  Serial.print("\t");         // *** paulv
+  Serial.print("pwm");   // *** paulv added pwm duty cycle to report
   Serial.print("\t");
   Serial.print(F("time"));
   Serial.print("\t");               
