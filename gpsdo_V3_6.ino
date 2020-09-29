@@ -942,9 +942,13 @@ void getCommand()
       case u:       // Set the minimum PWM for the fan
       case U:
         zz = Serial.parseInt();
-        pwm_baseline = zz; 
-        Serial.print(F("PWM Baseline "));
-        Serial.println(zz); 
+        if (zz > 0 && zz < 255)
+          {
+          pwm_baseline = zz; 
+          Serial.print(F("PWM Baseline "));
+          Serial.println(zz);
+          }
+        else { Serial.println(F("Not a valid PWM Baseline value - Shall be between 0 and 255"));} 
       break;
       
       case v:       // Set ambient temperature for fan regulation
