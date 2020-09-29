@@ -1429,9 +1429,9 @@ void setup()
 
 // *** paulv The fan controller
 void control_fan() {
-  // Use the low-pass filtered ambient temperature sensor value.
+  // Use the non-filtered ambient temperature sensor value.
   // Do not mess with the original code so convert the value to Celsius here again.
-  ambient_t = temperature_to_C(tempADC1_IIR,temperature_Sensor_Type/10);
+  ambient_t = temperature_to_C(tempADC1,temperature_Sensor_Type/10);
   // PID calculation
   float temp_error = ambient_t - cool_baseline;
   integral = integral + temp_error;
