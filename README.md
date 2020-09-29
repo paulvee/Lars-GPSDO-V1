@@ -19,6 +19,8 @@ There is a new version of run_fanV2_0.py, that implements a PID algorithm to bet
 
 Version 3.52 of the Lars code implements the PID based fan controller for the ambient temperature of the PGSDO enclosure itself, without needing an extra plastic container. It's working is more direct and therefore even better. Controller Schematic V2.1 shows the hardware components for the fan driver. Look at my blog for details.
 
+Version 3.6 of the Lars code implements the run-time setting of the fan controller parameters, so you don't need to re-compile all the time. The Help file (f1) and the variable settings (f2) incorporate these changes.
+
 PCB layout
 ==========
 I made three mistakes on the layout of the PCB and did a few things I should have done better. 
