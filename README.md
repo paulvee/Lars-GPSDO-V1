@@ -23,13 +23,15 @@ Version 3.6 of the Lars code implements the run-time setting of the fan controll
 
 PCB layout
 ==========
-I made three mistakes on the layout of the PCB and did a few things I should have done better. 
+I made four mistakes on the layout of the PCB and did a few things I should have done better. 
 Let me sum them up and also add some advise on how to use the board.
 1. The TO-92 footprint for the LM35's are the wrong way around. This is easy to fix by bending the middle pin the other way so you can swap the power and ground pins.
 
 2. The footprint for the Oscilloquartz OCXO is wrong. To isolate the OCXO temperature from the PCB, I used a 10mm piece of foam, on the bottom and also build a box around it with 10mm thick walls. I extended the OCXO leads so they are long enough to protrude through the foam to the bottom siude of the PCB. Where the two wrong connections are, I drilled a 2mm hole in the PCB and used an isolated wire to go to the bottom side and then connect them to the right connections. Because this OCXO is also a 12V version, I connected it straight to the incoming 12VDC supply. You could also use a 15VDC supply and add another LM7812 and mount that on the chassis. The output of the LM7812 goes to the OCXO and also to the input terminal on the PCB where the regular 12V DC comes in. Sounds complicated, but really isn't.
 
 3. Not only the legs, but also the locations for the two LM35 temp sensors are swapped. U6 is the ambient temperature sensor that is now connected to the OCXO and U5 is the OCXO sensor that is now measuring the ambient temperature. You could cut the traces and swap the connections to the Arduino, or make the changes in the software, which is easier. My Version 3 of the firmware has that modification.
+
+4. There is no connection to the positive side of C117, a Tantalum decoupling capacitor. You can make this connection, or not simple not install C117.
 
 a. The location of U3 is a little too close to the edge of the board. I use metal enclosures where the board slips in on rails, and I had to cut the pins on the edge of the chip and I also used some tape over them to make sure they don't short to the enclosure.
 
