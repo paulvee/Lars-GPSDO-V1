@@ -5,13 +5,14 @@ The blog of the project can be found here: https://www.eevblog.com/forum/project
 
 My own blog will detail my changes and experiences with this project. It can be found here : http://www.paulvdiyblogs.net/2020/07/a-high-precision-10mhz-gps-disciplined.html
 
+I have started a new blog and a new github project to deal with the monitoring, measuring and logging of the GPSDO to keep this part cleaner.
+The blog can be found here (coming soon), and the Github here (coming soon).
+
 Firmware and scripts
 ====================
 The version 2.0 of the Arduino code I use is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all this version (gpsdo_V2) does is change the ISR a little and adds a software probe to see what is going on inside the ISR.
 
-I have also added a few Python scripts that I use on my Raspberry Pi's that are connected to the USB serial out connector of the Arduino Nano. There is a script (Serial_monitor.py) that collects the output, and a script to mail the daily results to my account based on a cron setting. The log files go to a USB flash stick, not to the SD card, to avoid wear and tear. You need to also install an email program on the RPi of course. Version 3.4 of the Lars firmware adds low-pass filters for the display of the temperature sensors, and meaningfull labels for them in the header.
-
-I have also added a script (run_fan.py) that takes the values of a DS18B20 temperature sensor connected to a Raspberry Pi, which drives a little 30mm 5V fan with a PWM signal based on the temperatures. This sensor is located in the extra plastic enclosure I put my Oscilloquartz GPSDO enclosure in. It also houses the Raspberry Pi, which is powered from the GPSDO regulated 5V supply. This plastic enclosure provides another level of insulation from sudden room temperature changes to the GPSDO. Without the fan, the enclosure gets too hot. The PWM driven fan will stablize the temperatures inside the plastic enclosure within a very small temperature band.
+I have added a script (run_fan.py) that runs an a Raspberry Pi and takes the values of a DS18B20 temperature sensor connected to a Raspberry Pi, which drives a little 30mm 5V fan with a PWM signal based on the temperatures. This sensor is located in the extra plastic enclosure I put my Oscilloquartz GPSDO enclosure in. It also houses the Raspberry Pi, which is powered from the GPSDO regulated 5V supply. This plastic enclosure provides another level of insulation from sudden room temperature changes to the GPSDO. Without the fan, the enclosure gets too hot. The PWM driven fan will stablize the temperatures inside the plastic enclosure within a very small temperature band.
 
 Another version of the Serial_monitor(V2) takes the DS18B20 sensor reading and addes that in front of the Lars firmware report, such that I can measure and graph the OCXO oven temperature, the ambient temperature inside the aluminum GPSDO enclosure, and the temperature inside the plastic enclosure together with the usual ns and DAC values.
 
