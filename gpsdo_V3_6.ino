@@ -51,7 +51,7 @@ float ambient_t;          // ambient temperature
 int duty_cycle;           // PWM value for the fan
 float integral;           // used in PID function to save the previous value
 float prev_error;         // used in the PID function to store the previous error
-int cool_baseline = 36;   // start cooling from this temp in Celcius onwards.
+int cool_baseline = 35;   // start cooling from this temp in Celcius onwards.
 int pwm_baseline = 40;    // low PWM to keep the fan running and baseline
 int max_pwm = 255;        // maximum PWM value
 // gain factors. They work but could use a bit of further tuning depending on your hardware
@@ -99,7 +99,6 @@ unsigned int temperature_Sensor_Type = 0; //
 long tempADC1_IIR;
 long tempADC2_IIR;
 int IIR_Filter_Weight = 3;  // IIC filter weight value
-
 
 long timeConst = 32; // Time constant in seconds
 long timeConstOld = 32; // old Time constant
@@ -721,37 +720,37 @@ void getCommand()
           Serial.println ("");
           Serial.println (F("EEPROM content: "));
           Serial.print (F("restarts = "));
-          zz=(EEPROM.read(991)*256 + EEPROM.read(992)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(991)*256 + EEPROM.read(992)); Serial.println((unsigned int)zz); 
           Serial.print (F("totalTime3h = "));
-          zz=(EEPROM.read(993)*256 + EEPROM.read(994)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(993)*256 + EEPROM.read(994)); Serial.println((unsigned int)zz); 
           Serial.print (F("temperature_Sensor_Type =  "));
-          zz=(EEPROM.read(995)*256 + EEPROM.read(996)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(995)*256 + EEPROM.read(996)); Serial.println((unsigned int)zz); 
           Serial.print (F("ID_Number = "));
-          zz=(EEPROM.read(997)*256 + EEPROM.read(998)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(997)*256 + EEPROM.read(998)); Serial.println((unsigned int)zz); 
           Serial.print (F("TICmin = "));
-          zz=(EEPROM.read(999)*256 + EEPROM.read(1000)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(999)*256 + EEPROM.read(1000)); Serial.println((unsigned int)zz); 
           Serial.print (F("TICmax = "));
-          zz=(EEPROM.read(1001)*256 + EEPROM.read(1002)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1001)*256 + EEPROM.read(1002)); Serial.println((unsigned int)zz); 
           Serial.print (F("x2 = "));
-          zz=(EEPROM.read(1003)*256 + EEPROM.read(1004)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1003)*256 + EEPROM.read(1004)); Serial.println((unsigned int)zz); 
           Serial.print (F("TIC_Offset = "));
-          zz=(EEPROM.read(1005)*256 + EEPROM.read(1006)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1005)*256 + EEPROM.read(1006)); Serial.println((unsigned int)zz); 
           Serial.print (F("filterDiv = "));
-          zz=(EEPROM.read(1007)*256 + EEPROM.read(1008)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1007)*256 + EEPROM.read(1008)); Serial.println((unsigned int)zz); 
           Serial.print (F("warmUpTime = "));
-          zz=(EEPROM.read(1009)*256 + EEPROM.read(1010)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1009)*256 + EEPROM.read(1010)); Serial.println((unsigned int)zz); 
           Serial.print (F("damping = "));
-          zz=(EEPROM.read(1011)*256 + EEPROM.read(1012)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1011)*256 + EEPROM.read(1012)); Serial.println((unsigned int)zz); 
           Serial.print (F("tempRef = "));
-          zz=(EEPROM.read(1013)*256 + EEPROM.read(1014)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1013)*256 + EEPROM.read(1014)); Serial.println((unsigned int)zz); 
           Serial.print (F("tempCoeff = "));
-          zz=(EEPROM.read(1015)*256 + EEPROM.read(1016)); Serial.println((unsigned int)z);        
+          zz=(EEPROM.read(1015)*256 + EEPROM.read(1016)); Serial.println((unsigned int)zz);        
           Serial.print (F("dacValueOut = "));
-          zz=(EEPROM.read(1017)*256 + EEPROM.read(1018)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1017)*256 + EEPROM.read(1018)); Serial.println((unsigned int)zz); 
           Serial.print (F("gain = "));
-          zz=(EEPROM.read(1019)*256 + EEPROM.read(1020)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1019)*256 + EEPROM.read(1020)); Serial.println((unsigned int)zz); 
           Serial.print (F("timeConst = "));
-          zz=(EEPROM.read(1021)*256 + EEPROM.read(1022)); Serial.println((unsigned int)z); 
+          zz=(EEPROM.read(1021)*256 + EEPROM.read(1022)); Serial.println((unsigned int)zz); 
           Serial.print (F("k = "));
           Serial.println (EEPROM.read(1023));         
           Serial.println ("");                    
@@ -843,7 +842,7 @@ void getCommand()
           {
             ID_Number = zz; 
             Serial.print(F("ID_Number "));
-            Serial.println(zz);
+            Serial.println(ID_Number);
           }
           else { Serial.println(F("Not a valid ID_Number value - Shall be between 0 and 65534"));}
  	break;	
@@ -855,7 +854,7 @@ void getCommand()
           {
             TIC_Offset = zz; 
             Serial.print(F("TIC_Offset "));
-            Serial.println(zz);
+            Serial.println(TIC_Offset);
           }
           else { Serial.println(F("Not a valid TIC_offset - Shall be between 10 and 1020"));}
  	break;	
@@ -867,7 +866,7 @@ void getCommand()
           {
             filterDiv = zz; 
             Serial.print(F("Prefilter div "));
-            Serial.println(zz);
+            Serial.println(filterDiv);
           }
           else { Serial.println(F("Not a valid prefilter value - Shall be between 2 and 4"));}
  	break;	
@@ -934,7 +933,7 @@ void getCommand()
           {
             timeConst = zz; 
             Serial.print(F("time constant "));
-            Serial.println(zz);
+            Serial.println(timeConst);
           }
           else { Serial.println(F("Not a valid time constant - Shall be between 4 and 32000"));}
  	    break;	
@@ -946,7 +945,7 @@ void getCommand()
           {
           pwm_baseline = zz; 
           Serial.print(F("PWM Baseline "));
-          Serial.println(zz);
+          Serial.println(pwm_baseline);
           }
         else { Serial.println(F("Not a valid PWM Baseline value - Shall be between 0 and 255"));} 
       break;
@@ -956,7 +955,7 @@ void getCommand()
         zz = Serial.parseInt();
         cool_baseline = zz; 
         Serial.print(F("Cool Baseline "));
-        Serial.println(zz);            
+        Serial.println(cool_baseline);            
       break;
             
       case w:				// set warm up time command
@@ -966,7 +965,7 @@ void getCommand()
           {
             warmUpTime = zz; 
             Serial.print(F("Warmup time "));
-            Serial.println(zz);
+            Serial.println(warmUpTime);
           }
           else { Serial.println(F("Not a valid warmup time - Shall be between 2 and 1000"));}
  	    break;	
