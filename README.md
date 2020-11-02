@@ -6,17 +6,11 @@ The blog of the project can be found here: https://www.eevblog.com/forum/project
 My own blog will detail my changes and experiences with this project. It can be found here : http://www.paulvdiyblogs.net/2020/07/a-high-precision-10mhz-gps-disciplined.html
 
 I have started a new blog and a new github project to deal with the monitoring, measuring and logging of the GPSDO to keep this part cleaner.
-The blog can be found here (coming soon), and the Github here (coming soon).
+The blog can be found here (http://www.paulvdiyblogs.net/2020/10/monitoring-measuring-logging-gpsdo.html), and the dedicated Github here (https://github.com/paulvee/GPSDO-Monitoring).
 
 Firmware and scripts
 ====================
 The version 2.0 of the Arduino code I use is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all this version (gpsdo_V2) does is change the ISR a little and adds a software probe to see what is going on inside the ISR.
-
-I have added a script (run_fan.py) that runs an a Raspberry Pi and takes the values of a DS18B20 temperature sensor connected to a Raspberry Pi, which drives a little 30mm 5V fan with a PWM signal based on the temperatures. This sensor is located in the extra plastic enclosure I put my Oscilloquartz GPSDO enclosure in. It also houses the Raspberry Pi, which is powered from the GPSDO regulated 5V supply. This plastic enclosure provides another level of insulation from sudden room temperature changes to the GPSDO. Without the fan, the enclosure gets too hot. The PWM driven fan will stablize the temperatures inside the plastic enclosure within a very small temperature band.
-
-Another version of the Serial_monitor(V2) takes the DS18B20 sensor reading and addes that in front of the Lars firmware report, such that I can measure and graph the OCXO oven temperature, the ambient temperature inside the aluminum GPSDO enclosure, and the temperature inside the plastic enclosure together with the usual ns and DAC values.
-
-There is a new version of run_fanV2_0.py, that implements a PID algorithm to better control the fan. Although it works very well, I'm now doing some long-term testing with this version. The published version has my lates PID tweaks in them, but they may be different for your application.
 
 Version 3.52 of the Lars code implements the PID based fan controller for the ambient temperature of the PGSDO enclosure itself, without needing an extra plastic container. It's working is more direct and therefore even better. Controller Schematic V2.1 shows the hardware components for the fan driver. Look at my blog for details.
 
