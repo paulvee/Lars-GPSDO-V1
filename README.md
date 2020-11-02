@@ -16,6 +16,9 @@ Version 3.52 of the Lars code implements the PID based fan controller for the am
 
 Version 3.6 of the Lars code implements the run-time setting of the fan controller parameters, so you don't need to re-compile all the time. The Help file (f1) and the variable settings (f2) incorporate these changes. Note that these values are not stored in the EEPROM, there is no space left. 
 
+There are two Python scripts that run on a Raspberry Pi that collect the Lars report through the serial interface of the Arduino Nano, and by the end of the day e-mail me the daily results to my account. The mail script is activated by a cron job. The monitoring script is installed by a simple systemd service file.
+
+
 PCB layout
 ==========
 I made four mistakes on the layout of the PCB and did a few things I should have done better. 
