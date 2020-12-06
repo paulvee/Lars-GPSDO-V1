@@ -1440,11 +1440,11 @@ void control_fan() {
   // The PID derivative of the error is the rate of change of the error
   // Again we don't need the time element here 
   float derivative = (temp_error - prev_error);
-  // Calculate the PID output which is the fan duty cycle over and above the minimum PWM
+  // Calculate the PID output which is the fan duty cycle
   duty_cycle = (Kp * temp_error) + (Ki * integral) + (Kd * derivative);
   // save the calculated error term for the next integral calculation
   prev_error = temp_error;
-  // set the PWM boundaries
+  // set the duty-cycle (PWM) boundaries
   if (duty_cycle > max_pwm) {duty_cycle = max_pwm;} // max = 100% = 255
   if (duty_cycle < pwm_baseline) {duty_cycle = pwm_baseline;} // set the minimum
 
