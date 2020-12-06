@@ -10,11 +10,8 @@ The blog can be found here (http://www.paulvdiyblogs.net/2020/10/monitoring-meas
 
 Firmware and scripts
 ====================
-The version 2.0 of the Arduino code I use is a modified one from Lars' original one to be able to use the circuit without the 1Mohm discharge resistor. Basically, all this version (gpsdo_V2) does is change the ISR a little and adds a software probe to see what is going on inside the ISR.
-
-Version 3.52 of the Lars code implements the PID based fan controller for the ambient temperature of the PGSDO enclosure itself, without needing an extra plastic container. It's working is more direct and therefore even better. Controller Schematic V2.1 shows the hardware components for the fan driver. Look at my blog for details.
-
-Version 3.6 of the Lars code implements the run-time setting of the fan controller parameters, so you don't need to re-compile all the time. The Help file (f1) and the variable settings (f2) incorporate these changes. Note that these values are not stored in the EEPROM, there is no space left. 
+The version of the Arduino code I use (gpsdo_V3_61) is a modified one from Lars' original to be able to use the circuit without the 1Mohm discharge resistor.
+It also implements a PID based fan controller for the ambient temperature of the PGSDO enclosure itself. Controller Schematic V2.1 shows the hardware components for the fan driver. Look at my blog for details. This version of the Lars code also implements the run-time setting of the fan controller parameters, so you don't need to re-compile all the time. The Help file (f1) and the variable settings (f2) incorporate these changes. Note that these values are not stored in the EEPROM, there is no space left. 
 
 There are two Python scripts that run on a Raspberry Pi that collect the Lars report through the serial interface of the Arduino Nano, and by the end of the day e-mail me the daily results to my account. The mail script is activated by a cron job. The monitoring script is installed by a simple systemd service file.
 
