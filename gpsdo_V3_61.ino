@@ -1431,9 +1431,9 @@ void setup()
 void control_fan() {
   // Get the current ambient temperature and use the non-filtered sensor value.
   // Do not mess with the original code so convert the value to Celsius here again. 
-  ambient_t = temperature_to_C(tempADC1,temperature_Sensor_Type/10);
-  // Calculate the PID error which is the setpoint minus the current input
-  float temp_error = cool_baseline - ambient_t; 
+  ambient_t = temperature_to_C(tempADC1,temperature_Sensor_Type/10);   
+  // Calculate the PID error
+  float temp_error = ambient_t - cool_baseline; 
   // The PID integral of the error is the cumulative error over time. 
   // Time is always exactly 1 sec, so we don't need the time component here
   integral = integral + temp_error;
@@ -1441,15 +1441,15 @@ void control_fan() {
   // Again we don't need the time element here 
   float derivative = (temp_error - prev_error);
   // Calculate the PID output which is the fan duty cycle
-  duty_cycle = (Kp * temp_error) + (Ki * integral) + (Kd * derivative);
+  duty_cycle = pwm_baseline + (Kp * temp_error) + (Ki * integral) + (Kd * derivative);
   // save the calculated error term for the next integral calculation
   prev_error = temp_error;
-  // set the duty-cycle (PWM) boundaries
-  if (duty_cycle > max_pwm) {duty_cycle = max_pwm;} // max = 100% = 255
-  if (duty_cycle < pwm_baseline) {duty_cycle = pwm_baseline;} // set the minimum
 
-/* for debugging: 
-  Serial.print("Kp = ");
+  /*
+  // for debugging:
+  Serial.print("error = ");
+  Serial.print(temp_error); 
+  Serial.print("\tKp = ");
   Serial.print(Kp * temp_error);
   Serial.print("\tKi = ");
   Serial.print(Ki * integral);
@@ -1459,8 +1459,11 @@ void control_fan() {
   Serial.print(ambient_t);
   Serial.print("\tduty cycle = ");
   Serial.println(duty_cycle);
-*/           
-  analogWrite(fan_pin, duty_cycle); // Output the new PWM for the fan
+  */
+  // set the duty-cycle (=PWM) boundaries
+  if (duty_cycle > max_pwm) {duty_cycle = max_pwm;} // max = 100% = 255
+  if (duty_cycle < pwm_baseline) {duty_cycle = pwm_baseline;} // set the minimum
+  analogWrite(fan_pin, duty_cycle); // Output the new PWM value for the fan
 }
 
 
