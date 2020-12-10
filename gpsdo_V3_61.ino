@@ -1448,6 +1448,7 @@ void control_fan() {
   analogWrite(fan_pin, duty_cycle);
   
 // for debugging:
+  /*
   Serial.print("PID = ");
   Serial.print(pid);
   Serial.print("\terror = ");
@@ -1462,6 +1463,7 @@ void control_fan() {
   Serial.print(ambient_t);
   Serial.print("\tduty cycle = ");
   Serial.println(duty_cycle);
+  */
 }
 
 
