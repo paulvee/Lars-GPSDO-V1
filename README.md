@@ -44,7 +44,7 @@ g. I have not used U7, I put a socket in it's place. This the special chip that 
 
 h. Make sure you use a good quality 1nF NPO capacitor for C1. I used Chinese general purpose ones before, and there was a lot more stability when I changed it.
 
-i. After the burn-in period, make sure you take the trimmer out and replace it with resistors. It makes a big difference on the temperature sensitivity because it is so close to the oven of the OCXO's.
+i. After the burn-in period, make sure you take the trimmer out and replace it with resistors. It makes a big difference on the temperature sensitivity because it is so close to the oven of the OCXO's. 
 
 j. The ambient sensor LM35 (U6) is too close to the OCXO, so it picks up a lot of heat from it's temperature. The quick fix is to add some 5-8cm leads to the pins of the LM35 and move it out of the way. I suggest you move it close to the circuit around C1, because that has a significant temperature influence on the loop operation.
 
@@ -59,5 +59,5 @@ My modifictions based on the original V1 schematics that the PCB's are based upo
 
 Isolated Outputs and Fan Controller
 ===================================
-I have created a PCB that can be placed inside the GPSDO enclosure. It will add two isolated output channles for the 10MHz and also the fan controller. The circuit diagram and the Gerber files are avaiable.
+I have created a PCB that can be placed inside the GPSDO enclosure. It will add two isolated output channles for the 10MHz and also the fan controller. The circuit diagram and the Gerber files are avaiable. Isolated Outputs.jpg & GPSDO-iso_gerberV2.zip
 
