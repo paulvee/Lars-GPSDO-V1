@@ -56,3 +56,8 @@ IF you are a purist, it's easy to use this PCB with the original Lars' design by
 Modifications
 =============
 My modifictions based on the original V1 schematics that the PCB's are based upon, are documented in the V2 schematics.
+
+Isolated Outputs and Fan Controller
+===================================
+I have created a PCB that can be placed inside the GPSDO enclosure. It will add two isolated output channles for the 10MHz and also the fan controller. The circuit diagram and the Gerber files are avaiable.
+
