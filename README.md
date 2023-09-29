@@ -1,5 +1,6 @@
 # Lars Walenius-GPSDO
 Files for my Lars Walenius (RIP) GPSDO project
+NOTE that I have a new development, V4.1. Have a look at that project as well.
 
 The blog of the project can be found here: https://www.eevblog.com/forum/projects/lars-diy-gpsdo-with-arduino-and-1ns-resolution-tic/ it also includes my activities, stumbling and experiences.
 
